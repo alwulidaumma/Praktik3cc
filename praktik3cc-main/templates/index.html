@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="id">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuaca Jakarta</title>
+</head>
+<body>
+    <h1>Cuaca di Jakarta</h1>
+    {% if weather_data.error %}
+        <p>{{ weather_data.error }}</p>
+    {% else %}
+        <p>Suhu: {{ weather_data.temperature }}°C</p>
+        <p>Deskripsi: {{ weather_data.description }}</p>
+        <img src="{{ weather_data.icon }}" alt="Ikon Cuaca">
+    {% endif %}
+    <br>
+    <a href="/search"><button>Cari Cuaca Kota Lain</button></a>
+</body>
+</html>

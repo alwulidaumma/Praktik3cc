@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencarian Cuaca</title>
+</head>
+<body>
+    <h1>Cari Cuaca Kota</h1>
+    <form method="POST">
+        <label for="city">Masukkan nama kota:</label>
+        <input type="text" id="city" name="city" required placeholder="Masukkan nama kota">
+        <button type="submit">Cari Cuaca</button>
+    </form>
+    <br>
+    {% if weather_data %}
+        {% if weather_data.error %}
+            <p>{{ weather_data.error }}</p>
+        {% else %}
+            <h2>Cuaca di {{ weather_data.city }}</h2>
+            <p>Suhu: {{ weather_data.temperature }}°C</p>
+            <p>Deskripsi: {{ weather_data.description }}</p>
+            <img src="{{ weather_data.icon }}" alt="Ikon Cuaca">
+        {% endif %}
+    {% endif %}
+    <br>
+    <a href="/"><button>Kembali ke Halaman Utama</button></a>
+</body>
+</html>
